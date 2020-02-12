@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "250487149620",
+    "firebase_url": "https://krentest-5ed6f.firebaseio.com",
+    "project_id": "krentest-5ed6f",
+    "storage_bucket": "krentest-5ed6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250487149620:android:befc22102814d32256e661",
+        "android_client_info": {
+          "package_name": "com.noname.crenol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250487149620-4r40g3elvah6a417nqi8enuqr942v61k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2QepDojKqTFbgm-aVvMn7hlvw9QY-gWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250487149620-4r40g3elvah6a417nqi8enuqr942v61k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
