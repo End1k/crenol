@@ -1,5 +1,6 @@
 package com.noname.crenol
 
+import android.content.pm.ActivityInfo
 import android.graphics.*
 import android.os.Bundle
 import android.view.View
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ai1.pTurn = 0
         playe.pTurn = 1

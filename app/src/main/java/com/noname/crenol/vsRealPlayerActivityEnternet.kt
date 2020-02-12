@@ -1,5 +1,6 @@
 package com.noname.crenol
 
+import android.content.pm.ActivityInfo
 import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,7 +34,7 @@ class vsRealPlayerActivityEnternet : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vs_real_player_enternet)
 
-
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         playe1.pTurn = 0
         playe2.pTurn = 1
