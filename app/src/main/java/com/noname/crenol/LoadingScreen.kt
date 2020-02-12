@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.noname.crenol.R
+import kotlinx.android.synthetic.main.activity_loading_screen.*
 
 class LoadingScreen : AppCompatActivity() {
 
@@ -24,7 +25,6 @@ class LoadingScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading_screen)
-
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //Initialize the Handler
