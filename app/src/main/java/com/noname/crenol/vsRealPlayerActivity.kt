@@ -40,8 +40,8 @@ class vsRealPlayerActivity : AppCompatActivity() {
                         var p : Point = Point()
 
                         if (p1 != null) {
-                            p.x = (p1.y / (viewttt.height / g.psize)).toInt()
-                            p.y = (p1.x / (viewttt.width / g.psize)).toInt()
+                            p.x = (p1.y / (viewttt.height / g.pole.size)).toInt()
+                            p.y = (p1.x / (viewttt.width / g.pole[0].size)).toInt()
 
                             sd.turni(p)
                         }
@@ -52,9 +52,11 @@ class vsRealPlayerActivity : AppCompatActivity() {
     }
     fun bclick(v:View)
     {
-        g.psize = 10
+        g.psize = 3
+        g.w = g.psize
+        g.h = g.psize
         g.needToWin = 5
-        g.pole = Array(g.psize, { Array(g.psize, {0})})
+        g.pole = MutableList(g.psize, { MutableList(g.psize, {0})})
         g.turn = 0
     }
 

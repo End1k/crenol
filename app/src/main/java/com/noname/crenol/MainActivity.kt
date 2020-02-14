@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     {
         g.psize = 10
         g.needToWin = 5
-        g.pole = Array(g.psize, { Array(g.psize, {0})})
+        g.pole = MutableList(g.psize, { MutableList(g.psize, {0})})
         g.turn = 0
     }
 

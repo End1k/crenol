@@ -9,6 +9,8 @@ class PlayerVsPlayerController(gn: Game) : Controller(gn) {
         if (g.pole[p.x][p.y]==0 && !g.check()) {
             setPlace(p, getC())
             g.turn++
+            g.checkborder()
+            //g.addrow("t")
         }
     }
 
