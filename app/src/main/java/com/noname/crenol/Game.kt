@@ -47,9 +47,7 @@ class Game(val p1n: Player, val p2n : Player){
 
     fun checkborder()
     {
-        var thisw = pole.size
-        var thish = pole[0].size
-        for (i in 0..thisw-1)
+        for (i in 0..pole.size-1)
         {
             if (pole[i][0]!=0)
             {
@@ -57,15 +55,15 @@ class Game(val p1n: Player, val p2n : Player){
             }
         }
 
-        for (i in 0..thisw-1)
+        for (i in 0..pole.size-1)
         {
-            if (pole[i][thish-1]!=0)
+            if (pole[i][pole[0].size-1]!=0)
             {
                 addrow("r")
             }
         }
 
-        for (i in 0..thish-1)
+        for (i in 0..pole[0].size-1)
         {
             if (pole[0][i]!=0)
             {
@@ -73,9 +71,9 @@ class Game(val p1n: Player, val p2n : Player){
             }
         }
 
-        for (i in 0..thish-1)
+        for (i in 0..pole[0].size-1)
         {
-            if (pole[thisw-1][i]!=0)
+            if (pole[pole.size-1][i]!=0)
             {
                 addrow("b")
             }
@@ -279,6 +277,7 @@ class Game(val p1n: Player, val p2n : Player){
         }
         return false
     }
+
 
     fun cleartheroof()
     {
