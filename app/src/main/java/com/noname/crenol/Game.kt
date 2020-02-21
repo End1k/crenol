@@ -185,6 +185,17 @@ class Game(val p1n: Player, val p2n : Player){
                     canvas.drawLine(y.toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), (y+1).toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
                     canvas.drawLine((y+1).toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), y.toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
                 }
+                else if (pole[x][y] == 3)
+                {
+                    brus.color = Color.GREEN  //BLUE O
+                    canvas.drawCircle(y.toFloat() * (canvas.width / pole[0].size) + canvas.width / pole[0].size / 2  ,x.toFloat() * (canvas.height / pole.size) + canvas.height / pole.size / 2, (canvas.width / pole[0].size / 2).toFloat(), brus)
+                }
+                else if (pole[x][y] == 4)
+                {
+                    brus.color = Color.GREEN  //RED X
+                    canvas.drawLine(y.toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), (y+1).toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
+                    canvas.drawLine((y+1).toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), y.toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
+                }
             }
         }
         checkline(canvas)

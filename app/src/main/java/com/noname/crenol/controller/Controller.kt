@@ -42,7 +42,13 @@ open class Controller(gn: Game) {
 
 
     fun setPlace(p :Point, char : Int){
-        g.pole[p.x][p.y] = char
+        for (i in 0..g.pole.size-1)
+            for (l in 0..g.pole[0].size-1)
+                if (g.pole[i][l]>2)
+                {
+                    g.pole[i][l] -= 2
+                }
+        g.pole[p.x][p.y] = char+2
     }
 
     open fun turni(p: Point) {
