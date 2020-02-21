@@ -47,48 +47,44 @@ class Game(val p1n: Player, val p2n : Player){
 
     fun checkborder()
     {
+        var num : Int = 0
         for (i in 0..pole.size-1)
         {
-            if (pole[i][0]!=0)
-            {
-                addrow("l")
-            }
+            if (pole[i][0]!=0) { num++ }
         }
+        if (num >= (pole.size+1)/2)  { addrow("l") }
 
+        num = 0
         for (i in 0..pole.size-1)
         {
-            if (pole[i][pole[0].size-1]!=0)
-            {
-                addrow("r")
-            }
+            if (pole[i][pole[0].size-1]!=0) { num++ }
         }
+        if (num >= (pole.size+1)/2) { addrow("r") }
 
+        num = 0
         for (i in 0..pole[0].size-1)
         {
-            if (pole[0][i]!=0)
-            {
-                addrow("t")
-            }
+            if (pole[0][i]!=0) { num++ }
         }
+        if (num >= (pole[0].size+1)/2) { addrow("t") }
 
+        num = 0
         for (i in 0..pole[0].size-1)
         {
-            if (pole[pole.size-1][i]!=0)
-            {
-                addrow("b")
-            }
+            if (pole[pole.size-1][i]!=0) { num++ }
         }
+        if (num >= (pole[0].size+1)/2) { addrow("b") }
     }
 
-    fun check( ) : Boolean
+    fun check() : Boolean
     { //диагонали
-        for (i in 0..this.psize-this.needToWin) { //столбцы
-            for (l in 0..this.psize-this.needToWin) { //строки
+        for (i in 0..this.pole.size-this.needToWin) { //столбцы
+            for (l in 0..this.pole[0].size-this.needToWin) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i+n][l+n] == p) {v++}
+                        if (pole[i+n][l+n] == p || pole[i+n][l+n] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         winner = p
@@ -101,13 +97,13 @@ class Game(val p1n: Player, val p2n : Player){
 
 
         //диагонали
-        for (i in 0..this.psize-this.needToWin) { //столбцы
-            for (l in this.needToWin-1..this.psize-1) { //строки
+        for (i in 0..this.pole.size-this.needToWin) { //столбцы
+            for (l in this.needToWin-1..this.pole[0].size-1) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i+n][l-n] == p) {v++}
+                        if (pole[i+n][l-n] == p || pole[i+n][l-n] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         winner = p
@@ -119,13 +115,13 @@ class Game(val p1n: Player, val p2n : Player){
         }
 
         //вертикали
-        for (i in 0..this.psize-1) { //столбцы
-            for (l in 0..this.psize-this.needToWin) { //строки
+        for (i in 0..this.pole.size-1) { //столбцы
+            for (l in 0..this.pole[0].size-this.needToWin) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i][l+n] == p) {v++}
+                        if (pole[i][l+n] == p || pole[i][l+n] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         winner = p
@@ -137,13 +133,13 @@ class Game(val p1n: Player, val p2n : Player){
         }
 
         //горизонтали
-        for (i in 0..this.psize-this.needToWin) { //столбцы
-            for (l in 0..this.psize-1) { //строки
+        for (i in 0..this.pole.size-this.needToWin) { //столбцы
+            for (l in 0..this.pole[0].size-1) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i+n][l] == p) {v++}
+                        if (pole[i+n][l] == p || pole[i+n][l] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         winner = p
@@ -203,19 +199,19 @@ class Game(val p1n: Player, val p2n : Player){
 
     fun checkline(canvas : Canvas) : Boolean
     { //диагонали
-        for (i in 0..this.psize-this.needToWin) { //столбцы
-            for (l in 0..this.psize-this.needToWin) { //строки
+        for (i in 0..this.pole.size-this.needToWin) { //столбцы
+            for (l in 0..this.pole[0].size-this.needToWin) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i+n][l+n] == p) {v++}
+                        if (pole[i+n][l+n] == p || pole[i+n][l+n] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         var brus : Paint = Paint()
                         brus.color = Color.GREEN  //RED X
                         brus.strokeWidth = 40f
-                        canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / psize), (i.toFloat() + 0.5f) * (canvas.height / psize), ((l+needToWin).toFloat() - 0.5f) * (canvas.width / psize), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / psize), brus)
+                        canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), ((l+needToWin).toFloat() - 0.5f) * (canvas.width / pole[0].size), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     }
                 } // функция победы игрока номер P
@@ -225,19 +221,19 @@ class Game(val p1n: Player, val p2n : Player){
 
 
         //диагонали
-        for (i in 0..this.psize-this.needToWin) { //столбцы
-            for (l in this.needToWin-1..this.psize-1) { //строки
+        for (i in 0..this.pole.size-this.needToWin) { //столбцы
+            for (l in this.needToWin-1..this.pole[0].size-1) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i+n][l-n] == p) {v++}
+                        if (pole[i+n][l-n] == p || pole[i+n][l-n] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         var brus : Paint = Paint()
                         brus.color = Color.GREEN  //RED X
                         brus.strokeWidth = 40f
-                        canvas.drawLine(((l-needToWin).toFloat() + 1.5f) * (canvas.width / psize), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / psize), (l.toFloat() + 0.5f) * (canvas.width / psize), (i.toFloat() + 0.5f) * (canvas.height / psize), brus)
+                        canvas.drawLine(((l-needToWin).toFloat() + 1.5f) * (canvas.width / pole[0].size), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / pole.size), (l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     } // функция победы игрока номер P
 
@@ -246,19 +242,19 @@ class Game(val p1n: Player, val p2n : Player){
         }
 
         //вертикали
-        for (i in 0..this.psize-1) { //столбцы
-            for (l in 0..this.psize-this.needToWin) { //строки
+        for (i in 0..this.pole.size-1) { //столбцы
+            for (l in 0..this.pole[0].size-this.needToWin) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i][l+n] == p) {v++}
+                        if (pole[i][l+n] == p || pole[i][l+n] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         var brus : Paint = Paint()
                         brus.color = Color.GREEN  //RED X
                         brus.strokeWidth = 40f
-                        canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / psize), (i.toFloat() + 0.5f) * (canvas.height / psize), ((l+needToWin).toFloat() - 0.5f) * (canvas.width / psize), (i.toFloat() + 0.5f) * (canvas.height / psize), brus)
+                        canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), ((l+needToWin).toFloat() - 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     } // функция победы игрока номер P
 
@@ -267,19 +263,19 @@ class Game(val p1n: Player, val p2n : Player){
         }
 
         //горизонтали
-        for (i in 0..this.psize-this.needToWin) { //столбцы
-            for (l in 0..this.psize-1) { //строки
+        for (i in 0..this.pole.size-this.needToWin) { //столбцы
+            for (l in 0..this.pole[0].size-1) { //строки
                 for (p in 1..2) { //игроки
 
                     var v : Int = 0 //верные клетки в линии
                     for (n in 0..needToWin-1) { //клетки линии
-                        if (pole[i+n][l] == p) {v++}
+                        if (pole[i+n][l] == p || pole[i+n][l] == p+2) {v++}
                     }
                     if (v == needToWin) {
                         var brus : Paint = Paint()
                         brus.color = Color.GREEN  //RED X
                         brus.strokeWidth = 40f
-                        canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / psize), (i.toFloat() + 0.5f) * (canvas.height / psize), (l.toFloat() + 0.5f) * (canvas.width / psize), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / psize), brus)
+                        canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), (l.toFloat() + 0.5f) * (canvas.width / pole[0].size), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     } // функция победы игрока номер P
 
