@@ -25,6 +25,14 @@ class MainActivity : AppCompatActivity() {
         PlayerVsAiController(g)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        g.psize = intent.getIntExtra("size", 10)
+        g.needToWin = intent.getIntExtra("ntw", 10)
+
+        if (intent.getIntExtra("isEx", 0)==1) {sd.isEx=true}
+
+        g.pole = MutableList(g.psize, { MutableList(g.psize, {0})})
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -45,8 +53,8 @@ class MainActivity : AppCompatActivity() {
                         var p : Point = Point()
 
                         if (p1 != null) {
-                            p.x = (p1.y / (viewttt.height / g.psize)).toInt()
-                            p.y = (p1.x / (viewttt.width / g.psize)).toInt()
+                            p.x = (p1.y / (viewttt.height / g.pole.size)).toInt()
+                            p.y = (p1.x / (viewttt.width / g.pole[0].size)).toInt()
 
                             sd.turni(p)
                         }
@@ -57,8 +65,8 @@ class MainActivity : AppCompatActivity() {
     }
     fun bclick(v:View)
     {
-        g.psize = 10
-        g.needToWin = 5
+        g.psize = intent.getIntExtra("size", 0)
+        g.needToWin = intent.getIntExtra("ntw", 0)
         g.pole = MutableList(g.psize, { MutableList(g.psize, {0})})
         g.turn = 0
     }

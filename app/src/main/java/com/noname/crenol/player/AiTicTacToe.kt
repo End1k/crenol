@@ -11,11 +11,11 @@ class AiTicTacToe : Player(){
     }
 
     fun evaluation(g : Game): Point { // "il" - возвращает координаты
-        var wewes: Array<Array<Int>> = Array(g.psize, { Array(g.psize, { 0 }) })//оценка веса поля
+        var wewes: Array<Array<Int>> = Array(g.pole.size, { Array(g.pole[0].size, { 0 }) })//оценка веса поля
 
         //диагонали
-        for (i in 0..g.psize-g.needToWin) { //столбцы
-            for (l in 0..g.psize-g.needToWin) { //строки
+        for (i in 0..g.pole.size-g.needToWin) { //столбцы
+            for (l in 0..g.pole[0].size-g.needToWin) { //строки
                 var p: Int = 0 //
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
@@ -42,8 +42,8 @@ class AiTicTacToe : Player(){
             }
         }
         //диагонали
-        for (i in 0..g.psize-g.needToWin) { //столбцы
-            for (l in g.needToWin-1..g.psize-1) { //строки
+        for (i in 0..g.pole.size-g.needToWin) { //столбцы
+            for (l in g.needToWin-1..g.pole[0].size-1) { //строки
                 var p: Int = 0
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
@@ -71,8 +71,8 @@ class AiTicTacToe : Player(){
         }
 
         //вертикали
-        for (i in 0..g.psize-1) { //столбцы
-            for (l in 0..g.psize-g.needToWin) { //строки
+        for (i in 0..g.pole.size-1) { //столбцы
+            for (l in 0..g.pole[0].size-g.needToWin) { //строки
                 var p: Int = 0
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
@@ -100,8 +100,8 @@ class AiTicTacToe : Player(){
         }
 
         //горизонтали
-        for (i in 0..g.psize-g.needToWin) { //столбцы
-            for (l in 0..g.psize-1) { //строки
+        for (i in 0..g.pole.size-g.needToWin) { //столбцы
+            for (l in 0..g.pole[0].size-1) { //строки
                 var p: Int = 0
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
@@ -138,8 +138,8 @@ class AiTicTacToe : Player(){
             var l: Int = 0
         }
 
-        for (i in 0..g.psize-1) {
-            for (l in 0..g.psize-1) {
+        for (i in 0..g.pole.size-1) { //////////////////////////////////////////////////////////////////////////////
+            for (l in 0..g.pole[0].size-1) {
                 if (wewes[i][l] > BC.ozh)
                 {
                     if (g.pole[i][l] == 0)
