@@ -18,7 +18,7 @@ import androidx.appcompat.app.AlertDialog
 class Mainest2Activity : AppCompatActivity() {
 
     var DIALOG_EXIT : Int = 1;
-    var arrayo = arrayOf("3x3","5x5","7x7","10x10")
+    var arrayo = arrayOf("3x3","5x5","7x7","10x10","ExPaNd")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,6 +107,36 @@ class Mainest2Activity : AppCompatActivity() {
 //
 //    }
 
+    fun getSize(which: Int): Int
+    {
+        if(which==0) {return 3}
+        if(which==1) {return 5}
+        if(which==2) {return 7}
+        if(which==3) {return 10}
+        if(which==4) {return 3}
+        return 10000
+    }
+
+    fun getNtw(which: Int): Int
+    {
+        if(which==0) {return 3}
+        if(which==1) {return 5}
+        if(which==2) {return 5}
+        if(which==3) {return 5}
+        if(which==4) {return 5}
+        return 10000
+    }
+
+    fun getEx(which: Int): Int
+    {
+        if(which==0) {return 0}
+        if(which==1) {return 0}
+        if(which==2) {return 0}
+        if(which==3) {return 0}
+        if(which==4) {return 1}
+        return 0
+    }
+
     fun shoDialog(id: Int) : Dialog {
         if (id == DIALOG_EXIT) {
             val adb : AlertDialog.Builder = AlertDialog.Builder(this);
@@ -123,6 +153,12 @@ class Mainest2Activity : AppCompatActivity() {
 
                 //fun onClick( dialog: DialogInterface,  which: Int) {
                     Toast.makeText(applicationContext, arrayo[which] + " is clicked", Toast.LENGTH_SHORT).show()
+
+                var next: Intent = Intent(this, vsRealPlayerActivity::class.java)
+                next.putExtra("size", getSize(which))
+                next.putExtra("ntw", getNtw(which))
+                next.putExtra("isEx", getEx(which))
+                startActivity(next)
 
                 //}
             }

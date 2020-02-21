@@ -22,6 +22,15 @@ class vsRealPlayerActivity : AppCompatActivity() {
         PlayerVsPlayerController(g)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        g.psize = intent.getIntExtra("size", 10)
+        g.needToWin = intent.getIntExtra("ntw", 10)
+
+        if (intent.getIntExtra("isEx", 0)==1) {sd.isEx=true}
+
+        g.pole = MutableList(g.psize, { MutableList(g.psize, {0})})
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -52,10 +61,10 @@ class vsRealPlayerActivity : AppCompatActivity() {
     }
     fun bclick(v:View)
     {
-        g.psize = 3
+        g.psize = intent.getIntExtra("size", 0)
         g.w = g.psize
         g.h = g.psize
-        g.needToWin = 5
+        g.needToWin = intent.getIntExtra("ntw", 0)
         g.pole = MutableList(g.psize, { MutableList(g.psize, {0})})
         g.turn = 0
     }
