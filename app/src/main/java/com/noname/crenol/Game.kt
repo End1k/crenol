@@ -154,7 +154,8 @@ class Game(val p1n: Player, val p2n : Player){
 
     fun draw(canvas: Canvas){
         var brus: Paint = Paint()
-        brus.strokeWidth = 20f
+        brus.strokeWidth = (canvas.width/20).toFloat()
+        //brus.strokeWidth = 20f
         for (i in 0..pole[0].size){
             canvas.drawLine(i*(canvas.width/pole[0].size).toFloat(), 0f, i*(canvas.width/pole[0].size).toFloat(),
                 canvas.height.toFloat(),brus)
@@ -198,7 +199,11 @@ class Game(val p1n: Player, val p2n : Player){
     }
 
     fun checkline(canvas : Canvas) : Boolean
-    { //диагонали
+    {
+        var brus : Paint = Paint()
+        brus.color = Color.GREEN  //RED X
+        brus.strokeWidth = (canvas.width/15).toFloat()
+        //диагонали
         for (i in 0..this.pole.size-this.needToWin) { //столбцы
             for (l in 0..this.pole[0].size-this.needToWin) { //строки
                 for (p in 1..2) { //игроки
@@ -208,9 +213,7 @@ class Game(val p1n: Player, val p2n : Player){
                         if (pole[i+n][l+n] == p || pole[i+n][l+n] == p+2) {v++}
                     }
                     if (v == needToWin) {
-                        var brus : Paint = Paint()
-                        brus.color = Color.GREEN  //RED X
-                        brus.strokeWidth = 40f
+
                         canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), ((l+needToWin).toFloat() - 0.5f) * (canvas.width / pole[0].size), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     }
@@ -230,9 +233,7 @@ class Game(val p1n: Player, val p2n : Player){
                         if (pole[i+n][l-n] == p || pole[i+n][l-n] == p+2) {v++}
                     }
                     if (v == needToWin) {
-                        var brus : Paint = Paint()
-                        brus.color = Color.GREEN  //RED X
-                        brus.strokeWidth = 40f
+
                         canvas.drawLine(((l-needToWin).toFloat() + 1.5f) * (canvas.width / pole[0].size), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / pole.size), (l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     } // функция победы игрока номер P
@@ -251,9 +252,7 @@ class Game(val p1n: Player, val p2n : Player){
                         if (pole[i][l+n] == p || pole[i][l+n] == p+2) {v++}
                     }
                     if (v == needToWin) {
-                        var brus : Paint = Paint()
-                        brus.color = Color.GREEN  //RED X
-                        brus.strokeWidth = 40f
+
                         canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), ((l+needToWin).toFloat() - 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     } // функция победы игрока номер P
@@ -272,9 +271,7 @@ class Game(val p1n: Player, val p2n : Player){
                         if (pole[i+n][l] == p || pole[i+n][l] == p+2) {v++}
                     }
                     if (v == needToWin) {
-                        var brus : Paint = Paint()
-                        brus.color = Color.GREEN  //RED X
-                        brus.strokeWidth = 40f
+
                         canvas.drawLine((l.toFloat() + 0.5f) * (canvas.width / pole[0].size), (i.toFloat() + 0.5f) * (canvas.height / pole.size), (l.toFloat() + 0.5f) * (canvas.width / pole[0].size), ((i+needToWin).toFloat() - 0.5f) * (canvas.height / pole.size), brus)
                         return true
                     } // функция победы игрока номер P
