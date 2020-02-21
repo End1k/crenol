@@ -18,7 +18,7 @@ import androidx.appcompat.app.AlertDialog
 class Mainest2Activity : AppCompatActivity() {
 
     var DIALOG_EXIT : Int = 1;
-    var arrayo = arrayOf("3x3","5x5","7x7","10x10","ExPaNd")
+    var arrayo = arrayOf("3x3","5x5","7x7","10x10","Expand mode")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

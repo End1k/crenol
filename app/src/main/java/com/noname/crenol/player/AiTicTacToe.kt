@@ -13,17 +13,25 @@ class AiTicTacToe : Player(){
     fun evaluation(g : Game): Point { // "il" - возвращает координаты
         var wewes: Array<Array<Int>> = Array(g.pole.size, { Array(g.pole[0].size, { 0 }) })//оценка веса поля
 
+        var tpole = g.pole
+        for (i in 0..g.pole.size-1)
+            for (l in 0..g.pole[0].size-1)
+                if (tpole[i][l]>2)
+                {
+                    tpole[i][l] -= 2
+                }
+
         //диагонали
-        for (i in 0..g.pole.size-g.needToWin) { //столбцы
-            for (l in 0..g.pole[0].size-g.needToWin) { //строки
+        for (i in 0..tpole.size-g.needToWin) { //столбцы
+            for (l in 0..tpole[0].size-g.needToWin) { //строки
                 var p: Int = 0 //
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
-                    if (g.pole[i + n][l + n] != 0) {
+                    if (tpole[i + n][l + n] != 0) {
                         if (p == 0) {
-                            p = g.pole[i + n][l + n]
+                            p = tpole[i + n][l + n]
                         }
-                        if (p == g.pole[i + n][l + n]) {
+                        if (p == tpole[i + n][l + n]) {
                             streak++
                         } else {
                             streak = -g.needToWin - 2
@@ -42,16 +50,16 @@ class AiTicTacToe : Player(){
             }
         }
         //диагонали
-        for (i in 0..g.pole.size-g.needToWin) { //столбцы
-            for (l in g.needToWin-1..g.pole[0].size-1) { //строки
+        for (i in 0..tpole.size-g.needToWin) { //столбцы
+            for (l in g.needToWin-1..tpole[0].size-1) { //строки
                 var p: Int = 0
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
-                    if (g.pole[i + n][l - n] != 0) {
+                    if (tpole[i + n][l - n] != 0) {
                         if (p == 0) {
-                            p = g.pole[i + n][l - n]
+                            p = tpole[i + n][l - n]
                         }
-                        if (p == g.pole[i + n][l - n]) {
+                        if (p == tpole[i + n][l - n]) {
                             streak++
                         } else {
                             streak = -g.needToWin - 2
@@ -71,16 +79,16 @@ class AiTicTacToe : Player(){
         }
 
         //вертикали
-        for (i in 0..g.pole.size-1) { //столбцы
-            for (l in 0..g.pole[0].size-g.needToWin) { //строки
+        for (i in 0..tpole.size-1) { //столбцы
+            for (l in 0..tpole[0].size-g.needToWin) { //строки
                 var p: Int = 0
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
-                    if (g.pole[i][l + n] != 0) {
+                    if (tpole[i][l + n] != 0) {
                         if (p == 0) {
-                            p = g.pole[i][l + n]
+                            p = tpole[i][l + n]
                         }
-                        if (p == g.pole[i][l + n]) {
+                        if (p == tpole[i][l + n]) {
                             streak++
                         } else {
                             streak = -g.needToWin - 2
@@ -100,16 +108,16 @@ class AiTicTacToe : Player(){
         }
 
         //горизонтали
-        for (i in 0..g.pole.size-g.needToWin) { //столбцы
-            for (l in 0..g.pole[0].size-1) { //строки
+        for (i in 0..tpole.size-g.needToWin) { //столбцы
+            for (l in 0..tpole[0].size-1) { //строки
                 var p: Int = 0
                 var streak: Int = 0
                 for (n in 0..g.needToWin-1) { //клетки линии
-                    if (g.pole[i + n][l] != 0) {
+                    if (tpole[i + n][l] != 0) {
                         if (p == 0) {
-                            p = g.pole[i + n][l]
+                            p = tpole[i + n][l]
                         }
-                        if (p == g.pole[i + n][l]) {
+                        if (p == tpole[i + n][l]) {
                             streak++
                         } else {
                             streak = -g.needToWin - 2
