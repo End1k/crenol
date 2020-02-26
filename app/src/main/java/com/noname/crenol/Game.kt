@@ -1,6 +1,8 @@
 package com.noname.crenol
 
 import android.graphics.*
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.crenol.myapplication.player.Player
 
 class Game(val p1n: Player, val p2n : Player){
@@ -153,10 +155,12 @@ class Game(val p1n: Player, val p2n : Player){
         return false
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun draw(canvas: Canvas){
         canvas.drawColor(Color.LTGRAY)
-        val padding = (canvas.width/5/asize)
+        val padding = (canvas.width/2/asize)
         var brus: Paint = Paint()
+        brus.setStyle(Paint.Style.STROKE)
         brus.strokeWidth = (canvas.width/3/asize).toFloat()
         //brus.strokeWidth = 20f
         for (i in 0..pole[0].size){
@@ -178,7 +182,7 @@ class Game(val p1n: Player, val p2n : Player){
                 if (pole[x][y] == 1)
                 {
                     brus.color = Color.rgb(59,70,171)  //BLUE O
-                    canvas.drawCircle(y.toFloat() * (canvas.width / pole[0].size) + canvas.width / pole[0].size / 2  ,x.toFloat() * (canvas.height / pole.size) + canvas.height / pole.size / 2, (canvas.width / pole[0].size / 2).toFloat(), brus)
+                    canvas.drawCircle(y.toFloat() * (canvas.width / pole[0].size) + canvas.width / pole[0].size / 2  ,x.toFloat() * (canvas.height / pole.size) + canvas.height / pole.size / 2, (canvas.width / pole[0].size / 2).toFloat() - padding, brus)
                 }
                 else if (pole[x][y] == 2)
                 {
@@ -189,7 +193,7 @@ class Game(val p1n: Player, val p2n : Player){
                 else if (pole[x][y] == 3)
                 {
                     brus.color = Color.rgb(18,134,18)  //BLUE O
-                    canvas.drawCircle(y.toFloat() * (canvas.width / pole[0].size) + canvas.width / pole[0].size / 2  ,x.toFloat() * (canvas.height / pole.size) + canvas.height / pole.size / 2, (canvas.width / pole[0].size / 2).toFloat(), brus)
+                    canvas.drawCircle(y.toFloat() * (canvas.width / pole[0].size) + canvas.width / pole[0].size / 2  ,x.toFloat() * (canvas.height / pole.size) + canvas.height / pole.size / 2, (canvas.width / pole[0].size / 2).toFloat() - padding, brus)
                 }
                 else if (pole[x][y] == 4)
                 {

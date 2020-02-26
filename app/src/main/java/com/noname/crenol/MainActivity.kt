@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
     {
         g.psize = intent.getIntExtra("size", 0)
         g.needToWin = intent.getIntExtra("ntw", 0)
+        g.asize = g.psize * 2
         g.pole = MutableList(g.psize, { MutableList(g.psize, {0})})
         g.turn = 0
     }
