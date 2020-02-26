@@ -24,6 +24,7 @@ class vsRealPlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         g.psize = intent.getIntExtra("size", 10)
+        g.asize = g.psize * 2
         g.needToWin = intent.getIntExtra("ntw", 10)
 
         if (intent.getIntExtra("isEx", 0)==1) {sd.isEx=true}

@@ -12,8 +12,7 @@ class Game(val p1n: Player, val p2n : Player){
     var needToWin : Int = 5
     var pole: MutableList<MutableList<Int>> = MutableList(psize, { MutableList(psize, {0})})
 
-    var w : Int = psize
-    var h : Int = psize
+    var asize: Int = psize * 2
 
     //var pole: Array<Array<Int>> = Array(psize, { Array(psize, {0})})
     var turn: Int = 0
@@ -43,6 +42,7 @@ class Game(val p1n: Player, val p2n : Player){
                 pole[i].add(0, 0)
             }
         }
+        asize += 1
     }
 
     fun checkborder()
@@ -154,7 +154,7 @@ class Game(val p1n: Player, val p2n : Player){
 
     fun draw(canvas: Canvas){
         var brus: Paint = Paint()
-        brus.strokeWidth = (canvas.width/20).toFloat()
+        brus.strokeWidth = (canvas.width/3/asize).toFloat()
         //brus.strokeWidth = 20f
         for (i in 0..pole[0].size){
             canvas.drawLine(i*(canvas.width/pole[0].size).toFloat(), 0f, i*(canvas.width/pole[0].size).toFloat(),
@@ -202,7 +202,7 @@ class Game(val p1n: Player, val p2n : Player){
     {
         var brus : Paint = Paint()
         brus.color = Color.GREEN  //RED X
-        brus.strokeWidth = (canvas.width/15).toFloat()
+        brus.strokeWidth = (canvas.width/2/asize).toFloat()
         //диагонали
         for (i in 0..this.pole.size-this.needToWin) { //столбцы
             for (l in 0..this.pole[0].size-this.needToWin) { //строки
