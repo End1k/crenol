@@ -4,6 +4,7 @@ import android.graphics.*
 import com.crenol.myapplication.player.Player
 
 class Game(val p1n: Player, val p2n : Player){
+
     var p1 : Player = p1n
     var p2 : Player = p2n
 
@@ -153,6 +154,8 @@ class Game(val p1n: Player, val p2n : Player){
     }
 
     fun draw(canvas: Canvas){
+        canvas.drawColor(Color.LTGRAY)
+        val padding = (canvas.width/5/asize)
         var brus: Paint = Paint()
         brus.strokeWidth = (canvas.width/3/asize).toFloat()
         //brus.strokeWidth = 20f
@@ -171,27 +174,28 @@ class Game(val p1n: Player, val p2n : Player){
         {
             for (y in 0..pole[0].size-1)
             {
+
                 if (pole[x][y] == 1)
                 {
-                    brus.color = Color.BLUE  //BLUE O
+                    brus.color = Color.rgb(59,70,171)  //BLUE O
                     canvas.drawCircle(y.toFloat() * (canvas.width / pole[0].size) + canvas.width / pole[0].size / 2  ,x.toFloat() * (canvas.height / pole.size) + canvas.height / pole.size / 2, (canvas.width / pole[0].size / 2).toFloat(), brus)
                 }
                 else if (pole[x][y] == 2)
                 {
-                    brus.color = Color.RED  //RED X
-                    canvas.drawLine(y.toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), (y+1).toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
-                    canvas.drawLine((y+1).toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), y.toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
+                    brus.color = Color.parseColor("#d50000")  //RED X
+                    canvas.drawLine(y.toFloat() * (canvas.width / pole[0].size) + padding, x.toFloat() * (canvas.height / pole.size) + padding, (y+1).toFloat() * (canvas.width / pole[0].size) - padding, (x+1).toFloat() * (canvas.height / pole.size) - padding, brus)
+                    canvas.drawLine((y+1).toFloat() * (canvas.width / pole[0].size) - padding, x.toFloat() * (canvas.height / pole.size) + padding, y.toFloat() * (canvas.width / pole[0].size) + padding, (x+1).toFloat() * (canvas.height / pole.size) - padding, brus)
                 }
                 else if (pole[x][y] == 3)
                 {
-                    brus.color = Color.GREEN  //BLUE O
+                    brus.color = Color.rgb(18,134,18)  //BLUE O
                     canvas.drawCircle(y.toFloat() * (canvas.width / pole[0].size) + canvas.width / pole[0].size / 2  ,x.toFloat() * (canvas.height / pole.size) + canvas.height / pole.size / 2, (canvas.width / pole[0].size / 2).toFloat(), brus)
                 }
                 else if (pole[x][y] == 4)
                 {
-                    brus.color = Color.GREEN  //RED X
-                    canvas.drawLine(y.toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), (y+1).toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
-                    canvas.drawLine((y+1).toFloat() * (canvas.width / pole[0].size), x.toFloat() * (canvas.height / pole.size), y.toFloat() * (canvas.width / pole[0].size), (x+1).toFloat() * (canvas.height / pole.size), brus)
+                    brus.color = Color.rgb(18,134,18)  //RED X
+                    canvas.drawLine(y.toFloat() * (canvas.width / pole[0].size) + padding, x.toFloat() * (canvas.height / pole.size) + padding, (y+1).toFloat() * (canvas.width / pole[0].size) - padding, (x+1).toFloat() * (canvas.height / pole.size) - padding, brus)
+                    canvas.drawLine((y+1).toFloat() * (canvas.width / pole[0].size) - padding, x.toFloat() * (canvas.height / pole.size) + padding, y.toFloat() * (canvas.width / pole[0].size) + padding, (x+1).toFloat() * (canvas.height / pole.size) - padding, brus)
                 }
             }
         }
