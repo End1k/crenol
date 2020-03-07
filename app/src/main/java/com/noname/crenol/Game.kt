@@ -163,12 +163,12 @@ class Game(val p1n: Player, val p2n : Player){
         brus.setStyle(Paint.Style.STROKE)
         brus.strokeWidth = (canvas.width/3/asize).toFloat()
         //brus.strokeWidth = 20f
-        for (i in 0..pole[0].size){
+        for (i in 1..pole[0].size-1){
             canvas.drawLine(i*(canvas.width/pole[0].size).toFloat(), 0f, i*(canvas.width/pole[0].size).toFloat(),
                 canvas.height.toFloat(),brus)
 
         }
-        for (i in 0..pole.size) {
+        for (i in 1..pole.size-1) {
             canvas.drawLine(
                 0f, i * (canvas.height / pole.size).toFloat(),
                 canvas.width.toFloat(),i * (canvas.height/ pole.size).toFloat(), brus )
